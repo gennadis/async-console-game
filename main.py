@@ -3,6 +3,7 @@ import time
 
 from animations.stars import create_stars, blink
 from animations.fire import fire
+from animations.spaceship import animate_spaceship, load_frames
 
 TIC_TIMEOUT = 0.1
 
@@ -25,6 +26,19 @@ def draw(canvas):
     )
     fire_coroutine = fire(canvas, int(canvas_height / 2), int(canvas_width / 2))
     coroutines.append(fire_coroutine)
+    frame_one, frame_two = load_frames(
+        frame_one_filepath="animations/rocket_frame_1.txt",
+        frame_two_filepath="animations/rocket_frame_2.txt",
+    )
+
+    spacechip = animate_spaceship(
+        canvas,
+        row=canvas_height - 15,
+        column=int(canvas_width / 2),
+        frame_one=frame_one,
+        frame_two=frame_two,
+    )
+    coroutines.append(spacechip)
 
     while True:
         for coroutine in coroutines.copy():
