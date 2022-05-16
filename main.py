@@ -2,7 +2,7 @@ import curses
 import time
 
 from animations.stars import create_stars, blink
-from animations.rocket import fire
+from animations.fire import fire
 
 TIC_TIMEOUT = 0.1
 
@@ -23,8 +23,8 @@ def draw(canvas):
     coroutines.extend(
         [blink(canvas, row, column, symbol) for symbol, row, column in stars]
     )
-    rocket = fire(canvas, int(canvas_height / 2), int(canvas_width / 2))
-    coroutines.append(rocket)
+    fire = fire(canvas, int(canvas_height / 2), int(canvas_width / 2))
+    coroutines.append(fire)
 
     while True:
         for coroutine in coroutines.copy():
