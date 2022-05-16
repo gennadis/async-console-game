@@ -23,8 +23,8 @@ def draw(canvas):
     coroutines.extend(
         [blink(canvas, row, column, symbol) for symbol, row, column in stars]
     )
-    fire = fire(canvas, int(canvas_height / 2), int(canvas_width / 2))
-    coroutines.append(fire)
+    fire_coroutine = fire(canvas, int(canvas_height / 2), int(canvas_width / 2))
+    coroutines.append(fire_coroutine)
 
     while True:
         for coroutine in coroutines.copy():
