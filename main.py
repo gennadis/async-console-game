@@ -8,11 +8,12 @@ def draw(canvas):
     curses.curs_set(False)
     canvas.border()
 
-    coroutine = blink(canvas, row, column)
+    coroutines = [blink(canvas, row, column + i) for i in range(0, 25, 5)]
 
     while True:
-        coroutine.send(None)
-        canvas.refresh()
+        for coroutine in coroutines:
+            coroutine.send(None)
+            canvas.refresh()
         time.sleep(1)
 
 
